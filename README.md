@@ -13,10 +13,10 @@ Detailed environment setup instructions are described at the beginning of the `D
 
 There are two ways to connect to the remote Playwright server:
 
-1. Using environment variable with @playwright/test:
+1. Using environment variable:
 
 ```
-PW_TEST_CONNECT_WS_ENDPOINT=ws://127.0.0.1:3000/ npx playwright test
+PW_WS_ENDPOINT=ws://playwright:3000/ node src/index.js
 ```
 
 2. Using the browserType.connect() API for other applications:
