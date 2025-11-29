@@ -1,19 +1,24 @@
+import { program } from 'commander';
 import { chromium } from 'playwright';
 
-const WS_ENDPOINT = process.env.PW_WS_ENDPOINT || 'ws://127.0.0.1:3000/';
-const TARGET_URL = process.env.TARGET_URL || 'https://example.com';
+program
+  .requiredOption('-e, --endpoint <url>', 'Playwright server WebSocket endpoint')
+  .requiredOption('-u, --url <url>', 'Target URL to screenshot')
+  .parse();
+
+const options = program.opts();
 
 async function main() {
-  console.log(`Connecting to Playwright Server at ${WS_ENDPOINT}...`);
+  console.log(`Connecting to Playwright Server at ${options.endpoint}...`);
 
-  const browser = await chromium.connect(WS_ENDPOINT);
+  const browser = await chromium.connect(options.endpoint);
   console.log('Connected successfully!');
 
   try {
     const page = await browser.newPage();
-    console.log(`Navigating to ${TARGET_URL}...`);
+    console.log(`Navigating to ${options.url}...`);
 
-    await page.goto(TARGET_URL);
+    await page.goto(options.url);
 
     const title = await page.title();
     console.log(`Page title: ${title}`);

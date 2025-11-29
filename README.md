@@ -7,20 +7,10 @@ curl -L -O https://raw.githubusercontent.com/uraitakahito/hello-javascript/refs/
 chmod 755 docker-entrypoint.sh
 ```
 
-Detailed environment setup instructions are described at the beginning of the `Dockerfile`.
+**Detailed environment setup instructions are described at the beginning of the `Dockerfile`.**
 
-## Connecting to the Server
+## Examples
 
-There are two ways to connect to the remote Playwright server:
-
-1. Using environment variable:
-
-```
-PW_WS_ENDPOINT=ws://playwright:3000/ node src/index.js
-```
-
-2. Using the browserType.connect() API for other applications:
-
-```
-const browser = await playwright['chromium'].connect('ws://127.0.0.1:3000/');
+```bash
+node src/index.js --endpoint ws://playwright:3000/ --url https://example.com
 ```

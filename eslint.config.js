@@ -62,6 +62,12 @@ export default [
     },
   },
   {
+    files: ['src/**/*.js'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
+  {
     files: ['**/*.cjs'],
     languageOptions: {
       sourceType: 'commonjs',

@@ -10,6 +10,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "commander": "^14.0.2",
     "playwright": "^1.57.0"
   },
   "devDependencies": {
