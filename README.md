@@ -7,7 +7,7 @@ curl -L -O https://raw.githubusercontent.com/uraitakahito/hello-javascript/refs/
 chmod 755 docker-entrypoint.sh
 ```
 
-Detailed environment setup instructions are described at the beginning of the `Dockerfile`.
+**Detailed environment setup instructions are described at the beginning of the `Dockerfile`.**
 
 ## Connecting to the Server
 
