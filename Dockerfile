@@ -6,9 +6,9 @@
 #
 # ## Preparation
 #
-# ### Playwrightサーバの起動
+# ### Starting the Playwright Server
 #
-# 事前にMac側でPlaywrightサーバを起動しておきます。
+# Start the Playwright server on your Mac beforehand.
 #
 #   docker run --add-host=playwright:host-gateway -p 3000:3000 --rm --init -it --workdir /home/pwuser --user pwuser mcr.microsoft.com/playwright:v1.57.0-noble /bin/sh -c "npx -y playwright@1.57.0 run-server --port 3000 --host 0.0.0.0"
 #
