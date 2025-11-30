@@ -157,8 +157,33 @@ RUN bash -c "source $NVM_DIR/nvm.sh && \
              nvm use ${node_version} && \
              npm install -g @anthropic-ai/claude-code"
 
-# express server
-EXPOSE 3000
+#
+# WARNING: Do NOT expose port 3000 here.
+#
+# When VS Code's "Attach to Running Container" feature connects to this container,
+# it automatically detects exposed ports and sets up port forwarding from the Mac's
+# localhost to the container. This is called "Auto Forward Ports" feature.
+#
+# In projects where a server runs on the Mac host (e.g., Playwright server) and
+# the container connects to it via `--add-host=<hostname>:host-gateway`, exposing
+# the same port here causes a conflict.
+#
+# If this port is exposed, VS Code will forward Mac's localhost:<port> to the
+# container's localhost:<port>, which intercepts connections intended for the
+# Mac host server. This causes WebSocket or HTTP connections to hang indefinitely.
+#
+# Symptoms:
+#   - TCP connection succeeds (handshake completes)
+#   - But no data is received and the connection eventually times out
+#   - Works fine before VS Code attaches, fails after attaching
+#
+# To disable VS Code's auto port forwarding, you can also add this to settings.json:
+#   "remote.autoForwardPorts": false
+# Or ignore specific ports:
+#   "remote.portsAttributes": { "3000": { "onAutoForward": "ignore" } }
+#
+# EXPOSE 3000
+#
 
 WORKDIR /app
 ENTRYPOINT ["docker-entrypoint.sh"]
